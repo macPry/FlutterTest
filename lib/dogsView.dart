@@ -5,41 +5,50 @@ import 'package:flutter_app/futureUtils.dart';
 
 class DogsView extends StatefulWidget {
   @override
-  DogsViewState createState() => new DogsViewState();
+  DogsViewState createState() => DogsViewState();
 }
 
 class DogsViewState extends State<DogsView> {
   @override
   Widget build(BuildContext context) {
-    var listBuilder = new FutureBuilder(
+    var listBuilder = FutureBuilder(
         future: getDogs(),
-        builder: (BuildContext context, AsyncSnapshot<List<String>> snapshot) {
+        builder: (BuildContext context, AsyncSnapshot<List<Dog>> snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.none:
-              return new Text('none');
+              return Text('none');
             case ConnectionState.waiting:
-              return new Text('wait');
+              return Text('wait');
             default:
               if (snapshot.hasError)
-                return new Text('${snapshot.error}');
+                return Text('${snapshot.error}');
               else
-                return new Text('${snapshot.data}');
+                return Text('${snapshot.data}');
           }
         });
 
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text('Ass'),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Ass'),
       ),
       body: listBuilder,
     );
   }
 
-  Future<List<String>> getDogs() async {
-    var list = new List<String>();
-    list.add("a");
-    list.add("b");
+  Future<List<Dog>> getDogs() async {
+    var list = List.generate(5, (index) => Dog(index.toString()));
     await wait(3);
     return list;
+  }
+}
+
+class Dog {
+  var name;
+
+  Dog(this.name);
+
+  @override
+  String toString() {
+    return 'Dog{name: $name}';
   }
 }
