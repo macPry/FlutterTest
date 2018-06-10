@@ -6,10 +6,10 @@ import 'package:flutter_app/futureUtils.dart';
 
 class DogsView extends StatefulWidget {
   @override
-  DogsViewState createState() => DogsViewState();
+  _DogsViewState createState() => _DogsViewState();
 }
 
-class DogsViewState extends State<DogsView> {
+class _DogsViewState extends State<DogsView> {
   @override
   Widget build(BuildContext context) {
     var listBuilder = FutureBuilder(
@@ -35,10 +35,10 @@ class DogsViewState extends State<DogsView> {
       body: listBuilder,
     );
   }
+}
 
-  Future<List<Dog>> getDogs() async {
-    var list = List.generate(5, (index) => Dog(index.toString()));
-    await wait(3);
-    return list;
-  }
+Future<List<Dog>> getDogs() async {
+  var list = List.generate(5, (index) => Dog(index.toString()));
+  await wait(3);
+  return list;
 }
