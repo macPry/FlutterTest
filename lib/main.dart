@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/dogsView.dart';
+import 'package:flutter_app/DogsView.dart';
 
 void main() => runApp(MyApp());
 

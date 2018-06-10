@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_app/Dog.dart';
 import 'package:flutter_app/futureUtils.dart';
 
 class DogsView extends StatefulWidget {
@@ -39,16 +40,5 @@ class DogsViewState extends State<DogsView> {
     var list = List.generate(5, (index) => Dog(index.toString()));
     await wait(3);
     return list;
-  }
-}
-
-class Dog {
-  var name;
-
-  Dog(this.name);
-
-  @override
-  String toString() {
-    return 'Dog{name: $name}';
   }
 }
