@@ -24,7 +24,7 @@ class _DogsViewState extends State<DogsView> {
               if (snapshot.hasError)
                 return Text('${snapshot.error}');
               else
-                return Text('${snapshot.data}');
+                return showDogs(context, snapshot.data);
           }
         });
 
@@ -42,3 +42,18 @@ Future<List<Dog>> getDogs() async {
   await wait(3);
   return list;
 }
+
+Widget showDogs(BuildContext context, List<Dog> dogs) => ListView.builder(
+      itemCount: dogs.length,
+      itemBuilder: (context, index) {
+        return Column(
+          children: <Widget>[
+            ListTileTheme(
+              textColor: Colors.green,
+              child: ListTile(title: Text(dogs[index].name)),
+            ),
+            Divider(height: 2.0, color: Colors.red)
+          ],
+        );
+      },
+    );
