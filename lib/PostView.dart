@@ -1,22 +1,20 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_app/Dog.dart';
-import 'package:flutter_app/futureUtils.dart';
+import 'package:flutter_app/api/Post.dart';
+import 'package:flutter_app/api/postApi.dart';
 
-class DogsView extends StatefulWidget {
+class PostView extends StatefulWidget {
   @override
-  _DogsViewState createState() => _DogsViewState();
+  _PostViewState createState() => _PostViewState();
 }
 
-class _DogsViewState extends State<DogsView> {
+class _PostViewState extends State<PostView> {
   @override
   Widget build(BuildContext context) {
     var listBuilder = FutureBuilder(
-        future: getDogs(),
-        builder: (BuildContext context, AsyncSnapshot<List<Dog>> snapshot) {
+        future: getPost(),
+        builder: (BuildContext context, AsyncSnapshot<Post> snapshot) {
           if (snapshot.hasData)
-            return showDogs(context, snapshot.data);
+            return showPost(context, snapshot.data);
           else if (snapshot.hasError) return Text('${snapshot.error}');
           return CircularProgressIndicator();
         });
@@ -30,23 +28,23 @@ class _DogsViewState extends State<DogsView> {
   }
 }
 
-Future<List<Dog>> getDogs() async {
-  var list = List.generate(5, (index) => Dog(index.toString()));
-  await wait(3);
-  return list;
-}
+Widget showPost(BuildContext context, Post post) => Column(children: <Widget>[
+      Text(post.id.toString()),
+      Text(post.title),
+      Text(post.body)
+    ]);
 
-Widget showDogs(BuildContext context, List<Dog> dogs) => ListView.builder(
+/*Widget showDogs(BuildContext context, List<String> dogs) => ListView.builder(
       itemCount: dogs.length,
       itemBuilder: (context, index) {
         return Column(
           children: <Widget>[
             ListTileTheme(
               textColor: Colors.green,
-              child: ListTile(title: Text(dogs[index].name)),
+              child: ListTile(title: Text(dogs[index])),
             ),
             Divider(height: 2.0, color: Colors.red)
           ],
         );
       },
-    );
+    );*/

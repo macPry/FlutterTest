@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/DogsView.dart';
+import 'package:flutter_app/PostView.dart';
 
 void main() => runApp(MyApp());
 
@@ -11,5 +11,5 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: DogsView());
+      home: PostView());
 }
