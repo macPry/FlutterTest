@@ -15,24 +15,17 @@ class _DogsViewState extends State<DogsView> {
     var listBuilder = FutureBuilder(
         future: getDogs(),
         builder: (BuildContext context, AsyncSnapshot<List<Dog>> snapshot) {
-          switch (snapshot.connectionState) {
-            case ConnectionState.none:
-              return Text('none');
-            case ConnectionState.waiting:
-              return Text('wait');
-            default:
-              if (snapshot.hasError)
-                return Text('${snapshot.error}');
-              else
-                return showDogs(context, snapshot.data);
-          }
+          if (snapshot.hasData)
+            return showDogs(context, snapshot.data);
+          else if (snapshot.hasError) return Text('${snapshot.error}');
+          return CircularProgressIndicator();
         });
 
     return Scaffold(
       appBar: AppBar(
         title: Text('Ass'),
       ),
-      body: listBuilder,
+      body: Center(child: listBuilder),
     );
   }
 }
