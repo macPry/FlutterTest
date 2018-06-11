@@ -3,6 +3,7 @@ description: A new Flutter application.
 
 dependencies:
   http: "^0.11.3+16"
+  mockito: "^2.2.3"
   flutter:
     sdk: flutter
 

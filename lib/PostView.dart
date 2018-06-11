@@ -3,18 +3,24 @@ import 'package:flutter_app/api/Post.dart';
 import 'package:flutter_app/api/postApi.dart';
 
 class PostView extends StatefulWidget {
+  final PostApi api;
+  PostView(this.api);
+
   @override
-  _PostViewState createState() => _PostViewState();
+  _PostViewState createState() => _PostViewState(api);
 }
 
 class _PostViewState extends State<PostView> {
+  final PostApi api;
+  _PostViewState(this.api);
+
   @override
   Widget build(BuildContext context) {
     var listBuilder = FutureBuilder(
-        future: getPost(),
-        builder: (BuildContext context, AsyncSnapshot<Post> snapshot) {
+        future: api.getPosts(),
+        builder: (BuildContext context, AsyncSnapshot<List<Post>> snapshot) {
           if (snapshot.hasData)
-            return showPost(context, snapshot.data);
+            return showPosts(context, snapshot.data);
           else if (snapshot.hasError) return Text('${snapshot.error}');
           return CircularProgressIndicator();
         });
@@ -28,23 +34,23 @@ class _PostViewState extends State<PostView> {
   }
 }
 
-Widget showPost(BuildContext context, Post post) => Column(children: <Widget>[
+/*Widget showPost(BuildContext context, Post post) => Column(children: <Widget>[
       Text(post.id.toString()),
       Text(post.title),
       Text(post.body)
-    ]);
+    ]);*/
 
-/*Widget showDogs(BuildContext context, List<String> dogs) => ListView.builder(
-      itemCount: dogs.length,
+Widget showPosts(BuildContext context, List<Post> posts) => ListView.builder(
+      itemCount: posts.length,
       itemBuilder: (context, index) {
         return Column(
           children: <Widget>[
             ListTileTheme(
               textColor: Colors.green,
-              child: ListTile(title: Text(dogs[index])),
+              child: ListTile(title: Text(posts[index].title)),
             ),
             Divider(height: 2.0, color: Colors.red)
           ],
         );
       },
-    );*/
+    );

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/PostView.dart';
+import 'package:flutter_app/api/postApi.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(MyApp(RealPostApi()));
 
 class MyApp extends StatelessWidget {
+  final PostApi api;
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) => MaterialApp(
@@ -11,5 +13,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: PostView());
+      home: PostView(api));
+
+  MyApp(this.api);
 }
