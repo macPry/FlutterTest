@@ -16,11 +16,11 @@ var mockedPostApi = MockPostApi();
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    when(mockedPostApi.getPost()).thenReturn(Post(id: 123, title: 'Aaa', body: 'Boo'));
+    when(mockedPostApi.getPost(123)).thenReturn(Post(id: 123, title: 'Aaa', body: 'Boo'));
 
-    await tester.pumpWidget(new MyApp(mockedPostApi));
+    await tester.pumpWidget(MyApp(mockedPostApi));
 
-    verify(mockedPostApi.getPost());
+    verify(mockedPostApi.getPost(123));
 
     // Verify that our counter starts at 0.
     expect(find.text('Aaa'), findsOneWidget);

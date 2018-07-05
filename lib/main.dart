@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/PostView.dart';
+import 'package:flutter_app/PostsView.dart';
 import 'package:flutter_app/api/postApi.dart';
 
 void main() => runApp(MyApp(RealPostApi()));
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: PostView(api));
+      home: PostsView(api));
 
   MyApp(this.api);
 }

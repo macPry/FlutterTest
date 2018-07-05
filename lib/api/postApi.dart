@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
 
 abstract class PostApi {
-  Future<Post> getPost();
+  Future<Post> getPost(int id);
   Future<List<Post>> getPosts();
 }
 
@@ -13,9 +13,9 @@ class RealPostApi implements PostApi {
   static const BASE_URL = 'https://jsonplaceholder.typicode.com/';
 
   @override
-  Future<Post> getPost() async {
+  Future<Post> getPost(int id) async {
     return await http
-        .get(BASE_URL + 'posts/1')
+        .get(BASE_URL + 'posts/$id')
         .then((response) => jsonDecode(response.body))
         .then((post) => Post.fromJson(post));
   }
