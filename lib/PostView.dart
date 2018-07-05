@@ -14,16 +14,10 @@ class PostView extends StatelessWidget {
           title: Text('Details'),
         ),
         body: Builder(builder: (BuildContext context) {
-          return RaisedButton(
-              child: Text('$id'),
-              onPressed: () {
-                showMessage(context, api);
-              });
+          return RaisedButton(child: Text('$id'), onPressed: () => showMessage(context, api));
         }));
   }
 
   void showMessage(BuildContext context, PostApi api) =>
-      Scaffold.of(context).showSnackBar(SnackBar(
-            content: Text("Showing message"),
-          ));
+      Scaffold.of(context).showSnackBar(SnackBar(content: Text("Showing message")));
 }

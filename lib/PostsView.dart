@@ -48,9 +48,7 @@ Widget showPosts(BuildContext context, List<Post> posts, onClick) => ListView.bu
               textColor: Colors.green,
               child: ListTile(
                 title: Text(posts[index].title),
-                onTap: () {
-                  onClick(context, posts[index].id);
-                },
+                onTap: () => onClick(context, posts[index].id),
               ),
             ),
             Divider(height: 2.0, color: Colors.red)
